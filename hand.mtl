@@ -1,0 +1,14 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl skin(Clone)
+Kd 1 0.6666667 0.5058824
+
+newmtl _defaultMat(Clone)
+Kd 0.939 0.953 1
+
+newmtl foliage(Clone)
+Kd 0 0.654902 0.4862745
+
+newmtl stone(Clone)
+Kd 0.571037 0.5588287 0.735849
+

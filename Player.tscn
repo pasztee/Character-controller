@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://KinematicBody.gd" type="Script" id=1]
+[ext_resource path="res://Guns/gu1n.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Guns/gun_small.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://hand.obj" type="ArrayMesh" id=4]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.65
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id=2]
+radius = 0.65
+mid_height = 1.8
+
+[sub_resource type="CylinderShape" id=3]
+radius = 0.64
+height = 0.7
+
+[node name="Player" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20662, 0 )
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56243, 0 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Floor_check" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.19614, 0 )
+shape = SubResource( 3 )
+
+[node name="Rotation_Helper" type="Spatial" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.724059, 0 )
+
+[node name="Camera" type="Camera" parent="KinematicBody/Rotation_Helper"]
+
+[node name="hand" type="MeshInstance" parent="KinematicBody/Rotation_Helper/Camera"]
+transform = Transform( 2, 1.74846e-07, -1.74846e-07, -2.02832e-10, 1.41537, 1.41305, -2.47269e-07, 1.41305, -1.41537, 0.974, -0.251, -0.469 )
+mesh = ExtResource( 4 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+
+[node name="gun_small" type="MeshInstance" parent="KinematicBody/Rotation_Helper/Camera/hand"]
+transform = Transform( -0.25, -2.53522e-11, 9.05291e-09, -6.41407e-09, 0.176922, -0.176632, 6.38871e-09, 0.176632, 0.176922, -0.0117849, -0.430769, 0.0830259 )
+mesh = ExtResource( 3 )
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="gu1n" type="MeshInstance" parent="KinematicBody/Rotation_Helper/Camera/hand"]
+transform = Transform( -0.25, -2.5354e-11, 9.05289e-09, -6.41406e-09, 0.176922, -0.176632, 6.38871e-09, 0.176632, 0.176922, 0.237817, -0.602068, 0.258853 )
+visible = false
+mesh = ExtResource( 2 )
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="Barrel" type="Spatial" parent="KinematicBody/Rotation_Helper/Camera/hand/gu1n"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999742, 0.708925, 1.43421 )
